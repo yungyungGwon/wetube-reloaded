@@ -14,6 +14,7 @@ const logger= morgan("dev");
 app.set("view engine","pug");//view engine  tpxld ans
 app.set("views", process.cwd() +"/src/views");//디폴트 디렉토리가 아닌 설정 디렉토리에서 views에서 파일을 불러옴. 
 app.use(logger);
+app.use(express.urlencoded({extended:true}));//express application이 form의 value들을 이해할 수 있도록 하고, js형식으리ㅗ 변경해줌.   
 app.use("/", globalRouter);
 app.use("/videos", videoRouter);
 app.use("/users", usersRouter); 

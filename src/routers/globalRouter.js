@@ -7,8 +7,6 @@ const globalRouter = express.Router();
 globalRouter.get("/", trending); //videoRouter
 globalRouter.get("/join", join); //userRouter
 globalRouter.get("/login", login);
-globalRouter.get("/search", search);
-
 export default globalRouter;
 
 //Router : 엔드포인트와 해당 엔드포인트에서 실행되야 할 로직을 연결해주는 역할
