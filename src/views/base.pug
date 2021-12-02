@@ -3,6 +3,7 @@ html(lang="ko")
     head
         title #{pageTitle} | wetube 
         link(rel="stylesheet", href="https://unpkg.com/mvp.css")
+        link(rel="stylesheet", href="/assets/css/style.css")
     body
         haeder
             h1=pageTitle
@@ -12,7 +13,9 @@ html(lang="ko")
                         a(href="/") Home
                     if loggedIn
                         li  
-                            a(href="videos/upload") Upload Video
+                            a(href="/videos/upload") Upload Video
+                        li  
+                            a(href=`/users/${loggedInUser._id}`) My Profile 
                         li 
                             a(href="/users/edit") Edit Profile
                         li 
@@ -26,3 +29,4 @@ html(lang="ko")
                         a(href="/search") Search
             block content
     include partials/footer
+    script(src="/assets/js/main.js")

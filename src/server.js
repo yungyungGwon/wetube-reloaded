@@ -9,20 +9,21 @@ import { localsMiddleware } from "./middlewares";
 //console.log(process.cwd());//현재 작업 디렉토리를 알려주는 명령어
 
 const app = express();
-const logger= morgan("dev");
+const logger = morgan("dev");
 
-app.set("view engine","pug");//view engine  tpxld ans
-app.set("views", process.cwd() +"/src/views");//디폴트 디렉토리가 아닌 설정 디렉토리에서 views에서 파일을 불러옴. 
+app.set("view engine", "pug"); //view engine  tpxld ans
+app.set("views", process.cwd() + "/src/views"); //디폴트 디렉토리가 아닌 설정 디렉토리에서 views에서 파일을 불러옴.
 app.use(logger);
-app.use(express.urlencoded({extended:true}));//express application이 form의 value들을 이해할 수 있도록 하고, js형식으리ㅗ 변경해줌.   
+app.use(express.urlencoded({ extended: true })); //express application이 form의 value들을 이해할 수 있도록 하고, js형식으리ㅗ 변경해줌.
 
-app.use(session({
+app.use(
+  session({
     secret: process.env.COOKIE_SECRET,
     resave: false,
-    saveUninitialized: false, 
-    store: MongoStore.create({mongoUrl: process.env.DB_URL}),
-
-}));
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
+  })
+);
 
 /*app.use((req,res,next) => {
     req.sessionStore.all((error, sessions) => {
@@ -38,7 +39,8 @@ app.get("/add-one", (req,res,next) => {
 app.use(localsMiddleware);
 app.use("/", rootRouter);
 app.use("/videos", videoRouter);
-app.use("/users", userRouter); 
+app.use("/users", userRouter);
 app.use("/uploads", express.static("uploads"));
+app.use("/assets", express.static("assets"));
 
 export default app;
