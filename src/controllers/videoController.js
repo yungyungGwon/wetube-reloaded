@@ -14,7 +14,7 @@ console.log("finish")
 //async js의 위에서 아래로 실행하여 callback이 빠른 순으로부터 실행하나 async와 await를 사용하게 되면 기다림.
 export const home = async (req, res) => {
   //await는 db를 기다려 주는 함수
-  const videos = await Video.find({}).sort({ title: "asc" });
+  const videos = await Video.find({}).sort({ title: "asc" }).populate("owner");
   return res.render("home", { pageTitle: "Home", videos });
 };
 
@@ -123,7 +123,7 @@ export const search = async (req, res) => {
       title: {
         $regex: new RegExp(keyword, "i"), //i 옵션은 대소문자 구문 x
       },
-    });
+    }).populate("owner");
   }
   return res.render("search", { pageTitle: "Search", videos });
 };
