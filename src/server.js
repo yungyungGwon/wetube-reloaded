@@ -5,7 +5,9 @@ import MongoStore from "connect-mongo";
 import rootRouter from "./routers/rootRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
+import apiRouter from "./routers/apiRouter";
 import { localsMiddleware } from "./middlewares";
+
 //console.log(process.cwd());//현재 작업 디렉토리를 알려주는 명령어
 
 const app = express();
@@ -40,6 +42,7 @@ app.use(localsMiddleware);
 app.use("/", rootRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);
+app.use("/api", apiRouter);
 app.use("/uploads", express.static("uploads"));
 app.use("/assets", express.static("assets"));
 
