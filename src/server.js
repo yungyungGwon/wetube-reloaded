@@ -26,7 +26,11 @@ app.use(
     store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
   })
 );
-
+app.use((req, res, next) => {
+  res.header("Cross-Origin-Embedder-Policy", "require-corp");
+  res.header("Cross-Origin-Opener-Policy", "same-origin");
+  next();
+});
 /*app.use((req,res,next) => {
     req.sessionStore.all((error, sessions) => {
         console.log(sessions);
@@ -45,5 +49,6 @@ app.use("/users", userRouter);
 app.use("/api", apiRouter);
 app.use("/uploads", express.static("uploads"));
 app.use("/assets", express.static("assets"));
+app.use("/core", express.static("node_modules/@ffmpeg/core/dist"));
 
 export default app;
