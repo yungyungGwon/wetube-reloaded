@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import session from "express-session";
+import flash from "express-flash";
 import MongoStore from "connect-mongo";
 import rootRouter from "./routers/rootRouter";
 import videoRouter from "./routers/videoRouter";
@@ -16,7 +17,8 @@ const logger = morgan("dev");
 app.set("view engine", "pug"); //view engine  tpxld ans
 app.set("views", process.cwd() + "/src/views"); //디폴트 디렉토리가 아닌 설정 디렉토리에서 views에서 파일을 불러옴.
 app.use(logger);
-app.use(express.urlencoded({ extended: true })); //express application이 form의 value들을 이해할 수 있도록 하고, js형식으리ㅗ 변경해줌.
+app.use(express.urlencoded({ extended: true })); //express application이 form의 value들을 이해할 수 있도록 하고, js형식으로 변경해줌.
+app.use(express.json());
 
 app.use(
   session({
@@ -42,6 +44,7 @@ app.get("/add-one", (req,res,next) => {
     req.session.potato += 1;
     return res.send(`${req.session.id}\n ${req.session.potato}`);
 });*/
+app.use(flash());
 app.use(localsMiddleware);
 app.use("/", rootRouter);
 app.use("/videos", videoRouter);
