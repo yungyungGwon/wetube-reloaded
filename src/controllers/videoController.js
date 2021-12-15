@@ -22,8 +22,8 @@ export const home = async (req, res) => {
 
 export const watch = async (req, res) => {
   const { id } = req.params;
-  const video = await Video.findById(id).populate("owner");
-
+  const video = await Video.findById(id).populate("owner").populate("comments");
+  console.log(video);
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Vdieo not found." });
   }
@@ -52,7 +52,7 @@ export const postEdit = async (req, res) => {
   } = req.session;
   const { id } = req.params;
   const { title, description, hashtags } = req.body;
-  const video = await Video.exists({ _id: id });
+  const video = await Video.findOne({ _id: id });
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Video not found." });
   }
@@ -162,5 +162,29 @@ export const createComment = async (req, res) => {
     owner: user._id,
     video: id,
   });
+  video.comments.push(comment._id);
+  video.save();
+  return res.status(201).json({ newCommentId: comment._id });
+};
+
+export const deleteComment = async (req, res) => {
+  //파라미터로 던진 commentId id변수로 받음.
+  const { id } = req.params;
+  //sessionId를 통해 로그인 userId를 구함.
+  const {
+    user: { _id },
+  } = req.session;
+
+  //Comment collection에서 파라미터 값이랑 동일한 commentId가 있는지 확인.
+  const comment = await Comment.findById(id);
+
+  console.log(comment);
+  //commentId가 존재한다면 commentId의 OwnerId와 삭제하고자 하는 UserId가 동일한지 비교.
+  if (String(comment.owner) !== String(_id)) {
+    return res.sendStatus(404);
+  }
+  //위 if문을 통해 동일하면 해당 코멘트 삭제.
+  await Comment.findByIdAndDelete(id);
+
   return res.sendStatus(201);
 };
