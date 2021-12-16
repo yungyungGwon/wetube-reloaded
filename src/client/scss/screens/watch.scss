@@ -1,5 +1,5 @@
 .video__data {
-  margin-top: 20px;
+  margin: 20px 0px;
   display: flex;
   flex-direction: column;
   .video__title {
@@ -18,6 +18,33 @@
     }
   }
 }
+.video__add-comments {
+  width: 100%;
+  margin: 20px 0px;
+  form {
+    all: unset;
+    display: flex;
+  }
+  textarea {
+    all: unset;
+    width: 90%;
+    height: 30px;
+    resize: none; 
+    //resize: both;
+    font-size: 16px;
+    padding:10px;
+    margin-right: 8px;
+    overflow-y: hidden;
+    border-bottom: 1px solid white;
+  }
+  button {
+    margin:10px 0px;
+    height:35px;
+    background-color: rgb(236, 236, 236);
+    border-radius: 5px;
+    border: 1px solid rgb(236, 236, 236);
+  }
+}
 .video__comments {
   display: flex;
   flex-direction: column;
@@ -26,7 +53,7 @@
   margin: 0 auto;
   margin-top: 20px;
   .video__comment {
-    display:flex;
+    display: flex;
     justify-content: space-between;
     padding: 10px;
     border-radius: 9999px;

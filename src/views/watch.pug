@@ -32,14 +32,19 @@ block content
 
     if loggedIn
         div.video__add-comments 
-            form.video__comment-form#commentForm 
-                textarea(cols="30", rows="10", placeholder="Write a nice commment...")
+            form.video__add-comment-form#commentForm 
+                textarea(cols="30", rows="10",wrap="virtual" , id="wirteComment" placeholder="Write a nice commment...", )
                 button Add Comment
     div.video__comments
         ul
             each comment in video.comments.reverse()
                 li.video__comment(data-id=comment.id)
-                    i.fas.fa-comment-dots
+                    if comment.owner.avatarUrl === NULL
+                        i.fas.fa-user-circle
+                    else 
+                        img.header__avatar(src="/" + Comment.owner.avatarUrl)
+                    //img.header__avatar(src="/" + comment.owner.avatarUrl)
+                    //i.fas.fa-comment-dots
                     span #{comment.text}
                     if String(comment.owner._id) === String(loggedInUser._id)
                         i.fas.fa-trash-alt#deleteComment

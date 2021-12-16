@@ -2,6 +2,7 @@ const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
 const videoComment = document.getElementById("video__comment");
 const deleteCommentList = document.querySelectorAll("#deleteComment");
+const commentAdd = document.getElementById("wirteComment");
 
 const addComment = (text, id) => {
   const videoComments = document.querySelector(".video__comments ul");
@@ -19,7 +20,7 @@ const addComment = (text, id) => {
   newComment.appendChild(icon2);
   videoComments.prepend(newComment); //prepend()는 reverse()기능과 유사하다.
   //추가한 comment는 세션 리로드 없이는 삭제가 이뤄지지 않는 문제를 아래 클릭이벤트로 해결.
-  videoComments.addEventListener("click", handleDeleteComment)
+  videoComments.addEventListener("click", handleDeleteComment);
 };
 
 const handleSubmit = async (event) => {
@@ -54,6 +55,11 @@ const handleDeleteComment = async (event) => {
   });
 };
 
+const handleTextarea = (event) => {
+  let height = commentAdd.scrollHeight; // 높이
+  commentAdd.style.height = `${height - 20}px`;
+  
+};
 //handleSumbit Event
 if (form) {
   form.addEventListener("submit", handleSubmit);
@@ -63,3 +69,5 @@ if (form) {
 for (const deletecomment of deleteCommentList) {
   deletecomment.addEventListener("click", handleDeleteComment);
 }
+commentAdd.addEventListener("keydown", handleTextarea);
+//commentAdd.addEventListener("keyup", handleTextarea);

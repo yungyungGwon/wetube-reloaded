@@ -15,8 +15,8 @@ header
                     a(href="/users/logout")  Log Out
                 li
                     a(href=`/users/${loggedInUser._id}`) 
-                        if loggedInUser.avatarUrl === ""
-                            span 😊
+                        if loggedInUser.avatarUrl === NULL
+                            i.fas.fa-user-circle.profile_img
                         else 
                             img.header__avatar(src="/" + loggedInUser.avatarUrl)
             else
