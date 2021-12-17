@@ -2,8 +2,25 @@ extends base
 include mixins/video
 
 block content
-    div.video__grid
-        each video in videos 
-            +video(video)
-        else 
-            span.empty__message No videos found.
+    div.container
+        div.home__warp
+            div.home_menu
+                ul 
+                    li
+                        a(href="#")
+                            i.fas.fa-home
+                    li
+                        a(href="#")
+                            i.fas.fa-compass
+                    li
+                        a(href="#")
+                            i.fas.fa-file-video
+                    li
+                        a(href="#")
+                            i.fas.fa-archive
+
+            div.home_video
+                each video in videos 
+                    +video(video)
+                else 
+                    span.empty__message No videos found.

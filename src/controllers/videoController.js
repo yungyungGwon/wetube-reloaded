@@ -23,7 +23,7 @@ export const home = async (req, res) => {
 export const watch = async (req, res) => {
   const { id } = req.params;
   const video = await Video.findById(id).populate("owner").populate("comments");
-  console.log(video);
+  /*console.log(video);*/
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Vdieo not found." });
   }
@@ -164,6 +164,7 @@ export const createComment = async (req, res) => {
   });
   video.comments.push(comment._id);
   video.save();
+  console.log(comment.owner.avatarUrl);
   return res.status(201).json({ newCommentId: comment._id });
 };
 
@@ -178,7 +179,6 @@ export const deleteComment = async (req, res) => {
   //Comment collection에서 파라미터 값이랑 동일한 commentId가 있는지 확인.
   const comment = await Comment.findById(id);
 
-  console.log(comment);
   //commentId가 존재한다면 commentId의 OwnerId와 삭제하고자 하는 UserId가 동일한지 비교.
   if (String(comment.owner) !== String(_id)) {
     return res.sendStatus(404);
