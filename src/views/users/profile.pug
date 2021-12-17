@@ -12,7 +12,8 @@ block content
                 else
                     img(src="/" + user.avatarUrl).avatar
         h3=user.name
-    div.video__grid
+        
+    div.video__content
         each video in user.videos 
             +video(video) 
         else 

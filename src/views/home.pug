@@ -9,18 +9,22 @@ block content
                     li
                         a(href="#")
                             i.fas.fa-home
+                            div 홈
                     li
                         a(href="#")
                             i.fas.fa-compass
+                            div 탐색
                     li
                         a(href="#")
                             i.fas.fa-file-video
+                            div 구독
                     li
                         a(href="#")
                             i.fas.fa-archive
+                            div 보관함
 
-            div.home_video
+            div.home__content
                 each video in videos 
                     +video(video)
                 else 
-                    span.empty__message No videos found.
+                    span.empty__message 업로드된 비디오가 없습니다.

@@ -6,6 +6,7 @@
 @import "./components/header";
 @import "./components/footer";
 @import "./components/video";
+@import "./components/search-video";
 @import "./components/shared";
 @import "./components/forms";
 @import "./components/social-loggin";
@@ -29,14 +30,14 @@ body {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background-color: $bg;
   color: white;
-  line-height: 1;
 }
 
 main {
+  top: 60px;
+  bottom: 60px;
   width: 100%;
-  //max-width: 1400px;
-  //margin: 0 auto;
-  min-height: 75vh;
+  min-height: 100%;
+  position: absolute;
 }
 @keyframes goAway {
   from {
@@ -47,6 +48,12 @@ main {
     transform: translate(-50px);
     opacity: 0;
   }
+}
+.container {
+  width: 100%;
+  min-height: 70vh;
+  padding: 0;
+  border: 0;
 }
 .message {
   position: absolute;

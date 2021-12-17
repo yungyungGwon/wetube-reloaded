@@ -1,0 +1,67 @@
+mixin video(video)
+    a(href=`/videos/${video.id}`).search-video-mixin
+        div.video-mixin__left
+            div.video-mixin__thumb(style=`background-image:url(${video.thumbUrl}); background-size:cover;background-position:center;`)
+        div.video-mixin__right
+            div.video-mixin__data
+                div.video-mixin__title=video.title
+                div.video-mixin__meta
+                    span 조회수 #{video.meta.views} 회 •
+                    span=new Date(video.createdAt).toLocaleDateString().replace(/\./g, "")
+
+                div.video-mixin__ownerInfo
+                    if video.owner.avatarUrl === NULL
+                        i.fas.fa-user-circle
+                    else 
+                        if video.owner.avatarUrl
+                            if video.owner.avatarUrl.includes("github")
+                                img(src=video.owner.avatarUrl).video-mixin__avatar
+                                div.video-mixin__owner #{video.owner.name} 
+                            else
+                                img(src="/" + video.owner.avatarUrl).video-mixin__avatar
+                                div.video-mixin__owner #{video.owner.name} 
+                div.video-mixin__summary=video.description
+    a(href=`/videos/${video.id}`).search-video-mixin
+        div.video-mixin__left
+            div.video-mixin__thumb(style=`background-image:url(${video.thumbUrl}); background-size:cover;background-position:center;`)
+        div.video-mixin__right
+            div.video-mixin__data
+                div.video-mixin__title=video.title
+                div.video-mixin__meta
+                    span 조회수 #{video.meta.views} 회 •
+                    span=new Date(video.createdAt).toLocaleDateString().replace(/\./g, "")
+
+                div.video-mixin__ownerInfo
+                    if video.owner.avatarUrl === NULL
+                        i.fas.fa-user-circle
+                    else 
+                        if video.owner.avatarUrl
+                            if video.owner.avatarUrl.includes("github")
+                                img(src=video.owner.avatarUrl).video-mixin__avatar
+                                div.video-mixin__owner #{video.owner.name} 
+                            else
+                                img(src="/" + video.owner.avatarUrl).video-mixin__avatar
+                                div.video-mixin__owner #{video.owner.name} 
+                div.video-mixin__summary=video.description
+    a(href=`/videos/${video.id}`).search-video-mixin
+        div.video-mixin__left
+            div.video-mixin__thumb(style=`background-image:url(${video.thumbUrl}); background-size:cover;background-position:center;`)
+        div.video-mixin__right
+            div.video-mixin__data
+                div.video-mixin__title=video.title
+                div.video-mixin__meta
+                    span 조회수 #{video.meta.views} 회 •
+                    span=new Date(video.createdAt).toLocaleDateString().replace(/\./g, "")
+
+                div.video-mixin__ownerInfo
+                    if video.owner.avatarUrl === NULL
+                        i.fas.fa-user-circle
+                    else 
+                        if video.owner.avatarUrl
+                            if video.owner.avatarUrl.includes("github")
+                                img(src=video.owner.avatarUrl).video-mixin__avatar
+                                div.video-mixin__owner #{video.owner.name} 
+                            else
+                                img(src="/" + video.owner.avatarUrl).video-mixin__avatar
+                                div.video-mixin__owner #{video.owner.name} 
+                div.video-mixin__summary=video.description

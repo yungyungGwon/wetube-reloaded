@@ -1,13 +1,15 @@
 extends base
-include mixins/video 
+include mixins/search_video 
 
 block content
-	form(method="GET").search__form
-		input(placeholder="Search by title", name="keyword", type="text")
-		button 
-			i.fas.fa-search
-	div.video__grid
-		each video in videos 
-			+video(video)
-		else
-			span.empty__message No videos found.
+	div.container
+		div.search__warp
+			div.search__result
+				i.fas.fa-search.search__icon
+				span 	#{keyword}	검색 결과
+			div.search__content
+				each video in videos 
+					+video(video)
+				else
+					span.empty__message 비디오를 찾을 수 없습니다.
+					

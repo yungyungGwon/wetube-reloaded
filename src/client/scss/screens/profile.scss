@@ -16,3 +16,10 @@
         font-size:18px;
     }
 }
+.video__content{
+    display: flex;
+    flex-direction:row ;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}

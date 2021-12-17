@@ -107,7 +107,7 @@ const handleEnded = () => {
     method: "POST",
   });
 };
-
+/*
 const handleVolumUpDown = (event) => {
   if (event.which === 38 && video.volume < 1) {
     video.volume = (video.volume + 0.05).toFixed(2);
@@ -155,7 +155,7 @@ const handleKeydown = (event) => {
     handleVolumUpDown(event);
     handleMouseMove();
   }
-};
+};*/
 /*
 Left Arrow	37	
 	Up Arrow	38	
@@ -172,4 +172,4 @@ videoContainer.addEventListener("mousemove", handleMouseMove);
 videoContainer.addEventListener("mouseleave", handleMouseLeave);
 timeline.addEventListener("input", handleTimelineChange);
 fullScreenBtn.addEventListener("click", handleFullscreen);
-window.addEventListener("keydown", handleKeydown);
+//window.addEventListener("keydown", handleKeydown);
