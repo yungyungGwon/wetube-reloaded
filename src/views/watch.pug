@@ -74,11 +74,10 @@ block content
                                 if String(comment.owner._id) === String(loggedInUser._id)
                                     i.fas.fa-trash-alt#deleteComment
             div.watch__container-right
-                div
-                    each video in videos 
-                        +video(video)
-                    else 
-                        span 업로드된 비디오가 없습니다.
+                each video in videos 
+                    +video(video)
+                else 
+                    span 업로드된 비디오가 없습니다.
 block scripts 
     script(src="/assets/js/videoPlayer.js")
     script(src="/assets/js/commentSection.js")
