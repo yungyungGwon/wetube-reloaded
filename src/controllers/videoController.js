@@ -91,30 +91,20 @@ export const getUpload = (req, res) => {
   return res.render("upload", { pageTitle: `Upload video ` });
 };
 
+//nomad source
 export const postUpload = async (req, res) => {
-  //here we will add a vdieo to the videos array.
   const {
     user: { _id },
   } = req.session;
-
   const { video, thumb } = req.files;
   const { title, description, hashtags } = req.body;
-
-  console.log(req.files);
-  
-  let fileDuration = "";
-  ffmpeg.ffprobe(video, function(){
-    video.onloadedmetadata(function(){
-      fileDuration = Math.floor(video[0].duration);
-      console.log(fileDuration);
-    })
-  })
-  /*try {
+  const isHeroku = process.env.NODE_ENV === "production";
+  try {
     const newVideo = await Video.create({
       title,
       description,
-      fileUrl: video[0].path,
-      thumbUrl: thumb[0].path,
+      fileUrl: isHeroku ? video[0].location : video[0].path,
+      thumbUrl: isHeroku ? thumb[0].location : thumb[0].path,
       owner: _id,
       hashtags: Video.formatHashtags(hashtags),
     });
@@ -128,9 +118,10 @@ export const postUpload = async (req, res) => {
       pageTitle: "Upload Video",
       errorMessage: error._message,
     });
-  }*/
+  }
 };
 /*
+//내 소스코드
 export const postUpload = async (req, res) => {
   //here we will add a vdieo to the videos array.
   const {

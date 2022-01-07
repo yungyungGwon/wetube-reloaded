@@ -5,7 +5,7 @@ mixin video(video)
             div.video-mixin__data-left
                 div 
                     if video.owner.avatarUrl === NULL
-                        i.fas.fa-user-circle
+                        i.fas.fa-user-circle(style=`font-size:35px; margin:0px 5px`)
                     else 
                         if video.owner.avatarUrl
                             if video.owner.avatarUrl.includes("github")
