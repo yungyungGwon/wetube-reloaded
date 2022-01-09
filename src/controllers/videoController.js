@@ -2,7 +2,6 @@ import Video from "../models/Video";
 import Comment from "../models/Comment";
 import User from "../models/User";
 import { ContextExclusionPlugin } from "webpack";
-import ffmpeg from "fluent-ffmpeg";
 
 /* 
 console.log("start")
@@ -91,37 +90,6 @@ export const getUpload = (req, res) => {
   return res.render("upload", { pageTitle: `Upload video ` });
 };
 
-//nomad source
-export const postUpload = async (req, res) => {
-  const {
-    user: { _id },
-  } = req.session;
-  const { video, thumb } = req.files;
-  const { title, description, hashtags } = req.body;
-  const isHeroku = process.env.NODE_ENV === "production";
-  try {
-    const newVideo = await Video.create({
-      title,
-      description,
-      fileUrl: isHeroku ? video[0].location : video[0].path,
-      thumbUrl: isHeroku ? thumb[0].location : thumb[0].path,
-      owner: _id,
-      hashtags: Video.formatHashtags(hashtags),
-    });
-    const user = await User.findById(_id);
-    user.videos.push(newVideo._id);
-    user.save();
-    return res.redirect("/");
-  } catch (error) {
-    console.log(error);
-    return res.status(400).render("upload", {
-      pageTitle: "Upload Video",
-      errorMessage: error._message,
-    });
-  }
-};
-/*
-//내 소스코드
 export const postUpload = async (req, res) => {
   //here we will add a vdieo to the videos array.
   const {
@@ -131,8 +99,6 @@ export const postUpload = async (req, res) => {
   const { video, thumb } = req.files;
   const { title, description, hashtags } = req.body;
 
-  console.log(req.files);
-  
   try {
     const newVideo = await Video.create({
       title,
@@ -154,7 +120,7 @@ export const postUpload = async (req, res) => {
     });
   }
 };
-*/
+
 export const search = async (req, res) => {
   const { keyword } = req.query;
 
